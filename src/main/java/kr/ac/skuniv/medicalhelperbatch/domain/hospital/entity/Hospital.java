@@ -38,14 +38,10 @@ public class Hospital {
     private String xPos;
     private String yPos;
 
-//    @OneToMany
-//    @JoinColumn(name = "hcNo")
-//    private List<HospitalComment> hospitalComment = new ArrayList<>();
-//
-//    public Hospital(String location, List<HospitalComment> hospitalComment) {
-//        this.location = location;
-//        this.hospitalComment = hospitalComment;
-//    }
+    @OneToMany
+    @JoinColumn(name = "hcNo")
+    private List<HospitalComment> hospitalComment = new ArrayList<>();
+
 
     public static Hospital of(HospitalItemDto hospitalItemDto){
         return Hospital.builder()

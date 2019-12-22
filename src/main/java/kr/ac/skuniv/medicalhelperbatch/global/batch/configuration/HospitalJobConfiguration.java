@@ -4,18 +4,15 @@ import kr.ac.skuniv.medicalhelperbatch.domain.hospital.dto.HospitalDto;
 import kr.ac.skuniv.medicalhelperbatch.global.batch.partition.HospitalPartition;
 import kr.ac.skuniv.medicalhelperbatch.global.batch.reader.HospitalItemReader;
 import kr.ac.skuniv.medicalhelperbatch.global.batch.writer.HospitalItemWriter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -44,15 +41,15 @@ public class HospitalJobConfiguration {
     }
 
     @Bean
-    public Job apiCallJob(){
-        log.warn("-------api call job");
+    public Job HospitalApiCallJob(){
+        log.warn("-------Hospital api call job");
         return jobBuilderFactory.get("hospitalApiCallJob")
-                .start(apiCallPartitionStep())
+                .start(hospitalApiCallPartitionStep())
                 .build();
     }
 
     @Bean
-    public Step apiCallPartitionStep()
+    public Step hospitalApiCallPartitionStep()
             throws UnexpectedInputException, ParseException {
         return stepBuilderFactory.get("apiCallPartitionStep")
                 .partitioner("apiCallPartitionStep", hospitalPartition)
@@ -63,16 +60,15 @@ public class HospitalJobConfiguration {
     @Bean
     public Step hospitalApiCallStep() {
         return stepBuilderFactory.get("hospitalApiCallStep")
-                .<HospitalDto, HospitalDto>chunk(100)
+                .<HospitalDto, HospitalDto>chunk(100)//1페이지씩 100번 읽어와서 100페이지 한번에 write
                 .reader(hospitalItemReader)
                 .writer(hospitalItemWriter)
-                .transactionManager(jpaTransactionManager())
+                .transactionManager(HospitalJpaTransactionManager())
                 .build();
     }
 
     @Bean
-    @Primary
-    public PlatformTransactionManager jpaTransactionManager() {
+    public PlatformTransactionManager HospitalJpaTransactionManager() {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setDataSource(dataSource);
         return transactionManager;

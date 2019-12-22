@@ -9,16 +9,15 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @StepScope
 @Configuration
-@PropertySource("classpath:serviceKey.yml")
-public class HospitalItemWriter implements ItemWriter<HospitalDto>, InitializingBean {
+public class HospitalItemWriter implements ItemWriter<HospitalDto> {
 
     private List<Hospital> hospitalList = new ArrayList<>();
     private HospitalRepository hospitalRepository;
@@ -27,6 +26,7 @@ public class HospitalItemWriter implements ItemWriter<HospitalDto>, Initializing
         this.hospitalRepository = hospitalRepository;
     }
 
+    @Transactional
     public void saveHospital(HospitalDto item){
 
         for(HospitalItemDto hospitalItemDto : item.getBody().getItem()){
@@ -45,8 +45,4 @@ public class HospitalItemWriter implements ItemWriter<HospitalDto>, Initializing
         hospitalList.clear();
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-
-    }
 }
