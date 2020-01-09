@@ -1,6 +1,7 @@
 package kr.ac.skuniv.medicalhelperbatch.domain.drugstore.entity;
 
-import kr.ac.skuniv.medicalhelperbatch.domain.member.Member;
+import kr.ac.skuniv.medicalhelperbatch.domain.member.entity.Member;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +13,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 public class DrugstoreComment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dcNo;
 
     private Float score; // 5점 만점
@@ -23,9 +23,15 @@ public class DrugstoreComment {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public DrugstoreComment(Float score, String comment, Member member) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "drugstoreNo")
+    private Drugstore drugstore;
+
+    @Builder
+    public DrugstoreComment(Float score, String comment, Member member, Drugstore drugstore) {
         this.score = score;
         this.comment = comment;
         this.member = member;
+        this.drugstore = drugstore;
     }
 }

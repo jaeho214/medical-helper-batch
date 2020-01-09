@@ -1,9 +1,8 @@
-package kr.ac.skuniv.medicalhelperbatch.domain.member;
+package kr.ac.skuniv.medicalhelperbatch.domain.member.entity;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.drugstore.entity.DrugstoreComment;
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.entity.HospitalComment;
-import kr.ac.skuniv.medicalhelperbatch.domain.reservation.Reservation;
-import kr.ac.skuniv.medicalhelperbatch.domain.treatment.Treatment;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,13 +27,7 @@ public class Member {
     private String sex;
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private List<Treatment> treatments = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private List<Reservation> reservations = new ArrayList<>();
+    private String fcmToken;
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<DrugstoreComment> drugstoreComment = new ArrayList<>();
@@ -42,4 +35,15 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<HospitalComment> hospitalComments = new ArrayList<>();
 
+    @Builder
+    public Member(String userId, String password, String name, String phone, String birth, String sex, String address, String fcmToken) {
+        this.userId = userId;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.birth = birth;
+        this.sex = sex;
+        this.address = address;
+        this.fcmToken = fcmToken;
+    }
 }
