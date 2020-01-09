@@ -31,6 +31,8 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.springframework.batch:spring-batch-test'
+    implementation 'com.google.firebase:firebase-admin:6.8.1'
+    implementation 'org.json:json:20180813'
 }
 
 test {
