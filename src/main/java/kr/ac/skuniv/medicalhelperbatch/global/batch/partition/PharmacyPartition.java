@@ -1,6 +1,6 @@
 package kr.ac.skuniv.medicalhelperbatch.global.batch.partition;
 
-import kr.ac.skuniv.medicalhelperbatch.global.util.api.drugstore.DrugstoreApiRequest;
+import kr.ac.skuniv.medicalhelperbatch.global.util.api.pharmacy.PharmacyApiRequest;
 import org.springframework.batch.core.partition.support.Partitioner;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ public class PharmacyPartition implements Partitioner {
     public Map<String, ExecutionContext> partition(int gridSize) {
         Map<String, ExecutionContext> map = new HashMap<>();
         int i = 0;
-        for(DrugstoreApiRequest myEnum : DrugstoreApiRequest.values()){
+        for(PharmacyApiRequest myEnum : PharmacyApiRequest.values()){
             ExecutionContext context = new ExecutionContext();
             context.putString("pharmacyUri", myEnum.getUri());
             map.put("pharmacyPartition_" + i, context);
