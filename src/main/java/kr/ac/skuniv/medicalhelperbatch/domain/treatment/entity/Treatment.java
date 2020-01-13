@@ -1,8 +1,9 @@
 package kr.ac.skuniv.medicalhelperbatch.domain.treatment.entity;
 
+import kr.ac.skuniv.medicalhelperbatch.domain.common.JpaBasePersistable;
+import kr.ac.skuniv.medicalhelperbatch.domain.drug.entity.Drug;
 import kr.ac.skuniv.medicalhelperbatch.domain.member.entity.Member;
 import kr.ac.skuniv.medicalhelperbatch.domain.reservation.Reservation;
-import kr.ac.skuniv.medicalhelperbatch.domain.treatment.entity.Drug;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Treatment {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tno;
+@Table(name = "treatment")
+@AttributeOverride(name = "id", column = @Column(name="treatment_id"))
+public class Treatment extends JpaBasePersistable {
 
     private String title; // 진단명
     private String solution; // 받은 처방 기록
@@ -30,8 +31,8 @@ public class Treatment {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToOne(mappedBy = "treatment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "drug_no")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "drug_id")
     private Drug drug;
 
     @Builder
@@ -42,5 +43,4 @@ public class Treatment {
         this.reservation = reservation;
         this.member = member;
         this.drug = drug;
-    }
-}
+    }}

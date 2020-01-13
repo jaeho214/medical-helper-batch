@@ -1,6 +1,7 @@
 package kr.ac.skuniv.medicalhelperbatch.domain.hospital.entity;
 
-import kr.ac.skuniv.medicalhelperbatch.domain.hospital.dto.HospitalDto;
+import kr.ac.skuniv.medicalhelperbatch.domain.comment.hospitalComment.entity.HospitalComment;
+import kr.ac.skuniv.medicalhelperbatch.domain.common.JpaBasePersistable;
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.dto.HospitalItemDto;
 import lombok.*;
 
@@ -11,13 +12,11 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Hospital {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long hospitalNo;
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "hospital")
+@AttributeOverride(name = "id", column = @Column(name="hospital_id"))
+public class Hospital extends JpaBasePersistable {
 
     private String name;
     private String tel;
@@ -38,8 +37,7 @@ public class Hospital {
     private String xPos;
     private String yPos;
 
-    @OneToMany
-    @JoinColumn(name = "hcNo")
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
     private List<HospitalComment> hospitalComment = new ArrayList<>();
 
 

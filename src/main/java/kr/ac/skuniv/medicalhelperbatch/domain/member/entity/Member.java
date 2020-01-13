@@ -1,11 +1,9 @@
 package kr.ac.skuniv.medicalhelperbatch.domain.member.entity;
 
-import kr.ac.skuniv.medicalhelperbatch.domain.drugstore.entity.DrugstoreComment;
-import kr.ac.skuniv.medicalhelperbatch.domain.hospital.entity.HospitalComment;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import kr.ac.skuniv.medicalhelperbatch.domain.comment.pharmacyComment.entity.PharmacyComment;
+import kr.ac.skuniv.medicalhelperbatch.domain.comment.hospitalComment.entity.HospitalComment;
+import kr.ac.skuniv.medicalhelperbatch.domain.common.JpaBasePersistable;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,12 +11,14 @@ import java.util.List;
 
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-public class Member {
-    @Id
-    private String userId;
+@Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "member")
+@AttributeOverride(name = "id", column = @Column(name="member_id"))
+public class Member extends JpaBasePersistable {
+
+    @Column(name = "email", unique = true)
+    private String email;
 
     private String password;
     private String name;
@@ -30,14 +30,14 @@ public class Member {
     private String fcmToken;
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<DrugstoreComment> drugstoreComment = new ArrayList<>();
+    private List<PharmacyComment> pharmacyComment = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<HospitalComment> hospitalComments = new ArrayList<>();
 
     @Builder
-    public Member(String userId, String password, String name, String phone, String birth, String sex, String address, String fcmToken) {
-        this.userId = userId;
+    public Member(String email, String password, String name, String phone, String birth, String sex, String address, String fcmToken) {
+        this.email = email;
         this.password = password;
         this.name = name;
         this.phone = phone;

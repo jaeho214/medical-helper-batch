@@ -1,5 +1,7 @@
 package kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.entity;
 
+import kr.ac.skuniv.medicalhelperbatch.domain.comment.pharmacyComment.entity.PharmacyComment;
+import kr.ac.skuniv.medicalhelperbatch.domain.common.JpaBasePersistable;
 import kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto.PharmacyItemDto;
 import lombok.*;
 
@@ -10,14 +12,9 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @Builder
-@RequiredArgsConstructor
-@AllArgsConstructor
-public class Pharmacy {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long drugstoreNo;
-
+@Table(name = "pharmacy")
+@AttributeOverride(name = "id", column = @Column(name="pharmacy_id"))
+public class Pharmacy extends JpaBasePersistable {
     private String name;
     private String tel;
     private String address;
@@ -33,9 +30,9 @@ public class Pharmacy {
     private String xPos;
     private String yPos;
 
-    @OneToMany
-    @JoinColumn(name = "dcNo")
+    @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL)
     private List<PharmacyComment> pharmacyComment = new ArrayList<>();
+
 
     public static Pharmacy of(PharmacyItemDto pharmacyItemDto){
         return Pharmacy.builder()

@@ -1,5 +1,7 @@
-package kr.ac.skuniv.medicalhelperbatch.domain.hospital.entity;
+package kr.ac.skuniv.medicalhelperbatch.domain.comment.hospitalComment.entity;
 
+import kr.ac.skuniv.medicalhelperbatch.domain.common.JpaBasePersistable;
+import kr.ac.skuniv.medicalhelperbatch.domain.hospital.entity.Hospital;
 import kr.ac.skuniv.medicalhelperbatch.domain.member.entity.Member;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -11,11 +13,10 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HospitalComment {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long hcNo;
-
-    private Float score; // 5점 만점
+@Table(name = "hospitalComment")
+@AttributeOverride(name = "id", column = @Column(name="hospitalComment_id"))
+public class HospitalComment extends JpaBasePersistable {
+    private int score; // 5점 만점
     private String comment;
 
     @ManyToOne
@@ -23,11 +24,11 @@ public class HospitalComment {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hospitalNo")
+    @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
     @Builder
-    public HospitalComment(Float score, String comment, Member member, Hospital hospital) {
+    public HospitalComment(int score, String comment, Member member, Hospital hospital) {
         this.score = score;
         this.comment = comment;
         this.member = member;

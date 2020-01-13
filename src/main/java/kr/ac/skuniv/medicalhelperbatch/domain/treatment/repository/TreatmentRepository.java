@@ -1,6 +1,6 @@
 package kr.ac.skuniv.medicalhelperbatch.domain.treatment.repository;
 
-import kr.ac.skuniv.medicalhelperbatch.domain.treatment.entity.Drug;
+import kr.ac.skuniv.medicalhelperbatch.domain.drug.entity.Drug;
 import kr.ac.skuniv.medicalhelperbatch.domain.treatment.entity.Treatment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
