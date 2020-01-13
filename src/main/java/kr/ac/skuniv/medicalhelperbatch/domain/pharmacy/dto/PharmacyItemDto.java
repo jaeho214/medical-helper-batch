@@ -1,4 +1,4 @@
-package kr.ac.skuniv.medicalhelperbatch.domain.drugstore.dto;
+package kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +10,15 @@ import javax.xml.bind.annotation.XmlElement;
 @NoArgsConstructor
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class DrugstoreItemDto {
+public class PharmacyItemDto {
     @XmlElement(name = "addr")
     private String address;
 
     @XmlElement(name = "clCd")
-    private String drugstoreCode;
+    private String pharmacyCode;
 
     @XmlElement(name = "clCdNm")
-    private String drugstoreCodeName;
+    private String pharmacyCodeName;
 
     @XmlElement(name = "estbDd")
     private String openDate;

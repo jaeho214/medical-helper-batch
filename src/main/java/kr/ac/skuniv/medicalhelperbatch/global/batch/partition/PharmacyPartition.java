@@ -9,15 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class DrugstorePartition implements Partitioner {
+public class PharmacyPartition implements Partitioner {
     @Override
     public Map<String, ExecutionContext> partition(int gridSize) {
         Map<String, ExecutionContext> map = new HashMap<>();
         int i = 0;
         for(DrugstoreApiRequest myEnum : DrugstoreApiRequest.values()){
             ExecutionContext context = new ExecutionContext();
-            context.putString("drugstoreUri", myEnum.getUri());
-            map.put("drugstorePartition_" + i, context);
+            context.putString("pharmacyUri", myEnum.getUri());
+            map.put("pharmacyPartition_" + i, context);
             i++;
         }
         return map;

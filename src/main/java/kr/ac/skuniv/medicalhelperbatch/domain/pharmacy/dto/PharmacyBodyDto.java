@@ -1,4 +1,4 @@
-package kr.ac.skuniv.medicalhelperbatch.domain.drugstore.dto;
+package kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @XmlRootElement(name = "body")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class DrugstoreBodyDto {
+public class PharmacyBodyDto {
     @XmlElementWrapper(name = "items")// items안에
     @XmlElement(name = "item")//item들이 들어있음
-    private List<DrugstoreItemDto> item;
+    private List<PharmacyItemDto> item;
 
     @XmlElement(name = "numOfRows")
     private int numOfRows;

@@ -1,4 +1,4 @@
-package kr.ac.skuniv.medicalhelperbatch.domain.drugstore.entity;
+package kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.entity;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.member.entity.Member;
 import lombok.Builder;
@@ -12,9 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DrugstoreComment {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long dcNo;
+public class PharmacyComment {
 
     private Float score; // 5점 만점
     private String comment;
@@ -24,14 +22,14 @@ public class DrugstoreComment {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "drugstoreNo")
-    private Drugstore drugstore;
+    @JoinColumn(name = "drugstore_id")
+    private Pharmacy pharmacy;
 
     @Builder
-    public DrugstoreComment(Float score, String comment, Member member, Drugstore drugstore) {
+    public PharmacyComment(Float score, String comment, Member member, Pharmacy pharmacy) {
         this.score = score;
         this.comment = comment;
         this.member = member;
-        this.drugstore = drugstore;
+        this.pharmacy = pharmacy;
     }
 }

@@ -1,6 +1,6 @@
 package kr.ac.skuniv.medicalhelperbatch.global.batch.reader;
 
-import kr.ac.skuniv.medicalhelperbatch.domain.drugstore.dto.DrugstoreDto;
+import kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto.PharmacyDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 @StepScope
 @RequiredArgsConstructor
 @PropertySource("classpath:serviceKey.yml")
-public class DrugstoreItemReader implements ItemReader<DrugstoreDto>, StepExecutionListener {
+public class PharmacyItemReader implements ItemReader<PharmacyDto>, StepExecutionListener {
     @Value("${serviceKey}")
     private String serviceKey;
     private String uri;
@@ -36,7 +36,7 @@ public class DrugstoreItemReader implements ItemReader<DrugstoreDto>, StepExecut
         //partition 에서 넣어준 context를 가져와서
         ExecutionContext ctx = stepExecution.getExecutionContext();
         //uri 추출
-        uri = (String) ctx.get("drugstoreUri");
+        uri = (String) ctx.get("pharmacyUri");
     }
 
     @Override
@@ -45,13 +45,13 @@ public class DrugstoreItemReader implements ItemReader<DrugstoreDto>, StepExecut
     }
 
     @Override
-    public DrugstoreDto read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-        log.warn("-----Drugstore Api Calling...");
+    public PharmacyDto read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+        log.warn("-----pharmacy Api Calling...");
         URI uri = getUri();
         pageNum++;
-        if(pageNum > 2270)
+        if(pageNum > 2280)
             return null;
-        return restTemplate.getForObject(uri, DrugstoreDto.class);
+        return restTemplate.getForObject(uri, PharmacyDto.class);
     }
 
     private URI getUri() {
