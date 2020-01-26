@@ -1,4 +1,4 @@
-package kr.ac.skuniv.medicalhelperbatch.global.batch.writer;
+package kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.writer;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.dto.HospitalDto;
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.dto.HospitalItemDto;

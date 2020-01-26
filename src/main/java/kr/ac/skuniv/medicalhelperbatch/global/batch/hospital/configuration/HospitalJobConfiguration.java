@@ -1,9 +1,9 @@
-package kr.ac.skuniv.medicalhelperbatch.global.batch.configuration;
+package kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.configuration;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.dto.HospitalDto;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.partition.HospitalPartition;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.reader.HospitalItemReader;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.writer.HospitalItemWriter;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.partition.HospitalPartition;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.reader.HospitalItemReader;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.writer.HospitalItemWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

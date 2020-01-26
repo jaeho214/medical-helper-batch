@@ -1,4 +1,4 @@
-package kr.ac.skuniv.medicalhelperbatch.global.batch.partition;
+package kr.ac.skuniv.medicalhelperbatch.global.batch.pharmacy.partition;
 
 import kr.ac.skuniv.medicalhelperbatch.global.util.api.pharmacy.PharmacyApiRequest;
 import org.springframework.batch.core.partition.support.Partitioner;

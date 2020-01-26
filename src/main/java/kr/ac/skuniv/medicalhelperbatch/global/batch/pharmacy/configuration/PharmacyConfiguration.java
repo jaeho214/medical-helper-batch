@@ -1,9 +1,9 @@
-package kr.ac.skuniv.medicalhelperbatch.global.batch.configuration;
+package kr.ac.skuniv.medicalhelperbatch.global.batch.pharmacy.configuration;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto.PharmacyDto;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.partition.PharmacyPartition;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.reader.PharmacyItemReader;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.writer.PharmacyItemWriter;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.pharmacy.partition.PharmacyPartition;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.pharmacy.reader.PharmacyItemReader;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.pharmacy.writer.PharmacyItemWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

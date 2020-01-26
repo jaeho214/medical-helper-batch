@@ -1,4 +1,4 @@
-package kr.ac.skuniv.medicalhelperbatch.global.batch.writer;
+package kr.ac.skuniv.medicalhelperbatch.global.batch.pharmacy.writer;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto.PharmacyDto;
 import kr.ac.skuniv.medicalhelperbatch.domain.pharmacy.dto.PharmacyItemDto;
