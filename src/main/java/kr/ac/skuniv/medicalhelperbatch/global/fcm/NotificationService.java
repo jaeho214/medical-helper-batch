@@ -1,9 +1,9 @@
 package kr.ac.skuniv.medicalhelperbatch.global.fcm;
 
+import kr.ac.skuniv.medicalhelperbatch.domain.drug.entity.Drug;
+import kr.ac.skuniv.medicalhelperbatch.domain.drug.repository.DrugRepository;
 import kr.ac.skuniv.medicalhelperbatch.domain.member.entity.Member;
-import kr.ac.skuniv.medicalhelperbatch.domain.treatment.entity.Drug;
 import kr.ac.skuniv.medicalhelperbatch.domain.treatment.entity.Treatment;
-import kr.ac.skuniv.medicalhelperbatch.domain.treatment.repository.DrugRepository;
 import kr.ac.skuniv.medicalhelperbatch.domain.treatment.repository.TreatmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +23,11 @@ public class NotificationService {
     private final Map<String, String> tokenMap = new HashMap<>();
 
     private final FCMService fcmService;
-    private final NotificationService notificationService;
     private final DrugRepository drugRepository;
     private final TreatmentRepository treatmentRepository;
 
-    public NotificationService(FCMService fcmService, NotificationService notificationService, DrugRepository drugRepository, TreatmentRepository treatmentRepository) {
+    public NotificationService(FCMService fcmService, DrugRepository drugRepository, TreatmentRepository treatmentRepository) {
         this.fcmService = fcmService;
-        this.notificationService = notificationService;
         this.drugRepository = drugRepository;
         this.treatmentRepository = treatmentRepository;
     }

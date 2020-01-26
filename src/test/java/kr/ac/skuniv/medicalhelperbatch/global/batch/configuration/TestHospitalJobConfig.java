@@ -19,11 +19,6 @@ import java.util.Set;
 @EnableBatchProcessing //배치환경 자동 설정
 @EnableAutoConfiguration
 public class TestHospitalJobConfig {
-    @Bean
-    //이 Bean을 이용해서 JobParameters를 사용한 Job 실행 등이 이루어짐
-    public JobLauncherTestUtils jobLauncherTestUtils(){
-        return new JobLauncherTestUtils();
-    }
 
     @Bean
     public RestTemplate restTemplate(){

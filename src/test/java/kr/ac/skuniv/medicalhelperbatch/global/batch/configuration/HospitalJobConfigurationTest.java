@@ -2,9 +2,10 @@ package kr.ac.skuniv.medicalhelperbatch.global.batch.configuration;
 
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.entity.Hospital;
 import kr.ac.skuniv.medicalhelperbatch.domain.hospital.repository.HospitalRepository;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.partition.HospitalPartition;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.reader.HospitalItemReader;
-import kr.ac.skuniv.medicalhelperbatch.global.batch.writer.HospitalItemWriter;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.configuration.HospitalJobConfiguration;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.partition.HospitalPartition;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.reader.HospitalItemReader;
+import kr.ac.skuniv.medicalhelperbatch.global.batch.hospital.writer.HospitalItemWriter;
 import org.junit.After;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
